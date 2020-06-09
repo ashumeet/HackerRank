@@ -26,7 +26,7 @@ public class Main {
         Solution.badVersion = 6;
         System.out.println(Solution.firstBadVersion(10));
         Solution.badVersion = 4;
-        System.out.println(Solution.firstBadVersion(10));
+        System.out.println(Solution.firstBadVersion(20));
         Solution.badVersion = 7;
         System.out.println(Solution.firstBadVersion(7));
     }
@@ -46,9 +46,9 @@ class Solution extends VersionControl{
         int end = n;
         while (start < end) {
             int mid = start + (end - start) / 2;
-            if (isBadVersion(mid)) end = mid;
-            else start = mid + 1;
+            if (!isBadVersion(mid)) start = mid + 1;
+            else end = mid;
         }
-        return end;
+        return start;
     }
 }
