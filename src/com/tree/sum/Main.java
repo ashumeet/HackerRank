@@ -34,7 +34,7 @@ sum returning true if either recursive call finds a desired path.
 
 public class Main {
     public static void main(String[] args) {
-        System.out.println(Solution.hasPathSum(new TreeNode(5,
+        System.out.println(Solution.sumOfLeftLeaves(new TreeNode(5,
                 new TreeNode(4,
                         new TreeNode(11,
                                 new TreeNode( 7, null, null),
@@ -42,20 +42,19 @@ public class Main {
                 new TreeNode(8,
                         new TreeNode(13, null, null),
                         new TreeNode(4, null,
-                                new TreeNode(1, null, null)))), 22));
+                                new TreeNode(1, null, null))))));
     }
 }
 
 class Solution {
-    public static boolean hasPathSum(TreeNode root, int sum) {
-        if(root == null && sum == 0) {
-            return true;
-        } else if(root == null) {
-            return false;
+    public static int sumOfLeftLeaves(TreeNode root) {
+        if (root == null) {
+            return 0;
         }
-        return
-                hasPathSum(root.left, sum-root.val) ||
-                hasPathSum(root.right, sum-root.val);
+        if (root.left != null && root.left.left == null && root.left.right == null) {
+            return root.left.val + sumOfLeftLeaves(root.right);
+        }
+        return sumOfLeftLeaves(root.left) + sumOfLeftLeaves(root.right);
     }
 }
 
