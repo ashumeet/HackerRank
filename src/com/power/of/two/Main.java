@@ -21,12 +21,16 @@ Output: false
 public class Main {
     public static void main(String[] args){
         System.out.println(Solution.isPowerOfTwo(16));
+        System.out.println(Solution.isPowerOfTwo(15));
+        System.out.println(Solution.isPowerOfTwo(21));
+        System.out.println(Solution.isPowerOfTwo(42));
+        System.out.println(Solution.isPowerOfTwo(256));
     }
 }
 
 class Solution {
     public static boolean isPowerOfTwo(int n){
-        long i = 1;
+        int i = 1;
         while (i < n) {
             i *= 2;
         }

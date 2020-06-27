@@ -27,13 +27,12 @@ public class Main {
 class Solution {
     public static int firstUniqChar(String s) {
         HashMap<Character, Integer> map = new HashMap<>();
-        for (int i = 0; i < s.length(); i++) {
-            char current = s.charAt(i);
-            if (!map.containsKey(current)) map.put(current, i);
-            else map.put(current, -1);
+        for(char c : s.toCharArray()) {
+            map.put(c, map.getOrDefault(c, 0) + 1);
         }
-        int index = Integer.MAX_VALUE;
-        for (char c : map.keySet()) if (map.get(c) > -1 && map.get(c) < index) index = map.get(c);
-        return index == Integer.MAX_VALUE ? -1 : index;
+        for(int i = 0; i < s.length(); i++) {
+            if(map.get(s.charAt(i)) == 1) return i;
+        }
+        return -1;
     }
 }
